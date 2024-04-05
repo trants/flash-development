@@ -72,6 +72,10 @@ Temporary Items
 # Directories SSL
 .well-known
 
+# Directories docker
+docker/nginx/sites-enabled/*.conf
+src
+
 ### Go Binaries for programs, plugins and dependency directories... ###
 # Covers: Go
 # Reference: https://www.toptal.com/developers/gitignore/api/go
