@@ -20,6 +20,19 @@ services:
     networks:
       - network-bridge
 
+  golang:
+    container_name: golang
+    restart: always
+    image: vnspc/golang:1.22
+    volumes: *appvolumes
+    extra_hosts: *appextrahosts
+    networks:
+      - network-bridge
+
+volumes:
+  sock-data:
+  ssl-data:
+
 networks:
   network-bridge:
     driver: bridge
