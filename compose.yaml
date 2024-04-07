@@ -46,8 +46,23 @@ services:
     networks:
       - network-bridge
 
+  postgres:
+    container_name: postgres
+    restart: always
+    image: postgres:16-alpine
+    ports:
+      - ${POSTGRES_DB_PORT:-5432}:5432
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-root}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-root}
+    networks:
+      - network-bridge
+
 volumes:
   mysql-data:
+  postgres-data:
   sock-data:
   ssl-data:
 
