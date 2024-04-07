@@ -73,7 +73,6 @@ Temporary Items
 .well-known
 
 # Directories docker
-docker/nginx/sites-enabled/*.conf
 src
 
 ### Go Binaries for programs, plugins and dependency directories... ###
