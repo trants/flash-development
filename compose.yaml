@@ -29,7 +29,25 @@ services:
     networks:
       - network-bridge
 
+  mysql:
+    container_name: mysql
+    restart: always
+    image: mysql:8.3
+    ports:
+      - ${MYSQL_DB_PORT:-3306}:3306
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-root}
+    command:
+      --max_allowed_packet=64M
+      --optimizer_use_condition_selectivity=1
+      --optimizer_switch="rowid_filter=off"
+    networks:
+      - network-bridge
+
 volumes:
+  mysql-data:
   sock-data:
   ssl-data:
 
