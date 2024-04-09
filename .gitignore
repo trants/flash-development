@@ -72,6 +72,9 @@ Temporary Items
 # Directories SSL
 .well-known
 
+# Environment's params
+.env
+
 # Directories docker
 docker/nginx/sites-enabled/*.conf
 src
