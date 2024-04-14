@@ -13,19 +13,8 @@ services:
       - ./src:/var/www:cached
       - sock-data:/sock
       - ssl-data:/etc/nginx/certs
-    depends_on:
-      - golang
     extra_hosts: &appextrahosts
       - "*:172.17.0.1"
-    networks:
-      - network-bridge
-
-  golang:
-    container_name: golang
-    restart: always
-    image: vnspc/golang:1.22
-    volumes: *appvolumes
-    extra_hosts: *appextrahosts
     networks:
       - network-bridge
 
