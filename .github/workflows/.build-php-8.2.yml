@@ -8,7 +8,7 @@ on:
       - 'images/php/8.2/**'
 
 jobs:
-  docker-build-php-81:
+  docker-build-php-82:
     runs-on: ubuntu-latest
 
     steps:
