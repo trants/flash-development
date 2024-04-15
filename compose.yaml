@@ -13,8 +13,27 @@ services:
       - ./src:/var/www:cached
       - sock-data:/sock
       - ssl-data:/etc/nginx/certs
+    depends_on:
+      - phpfpm
+      - mysql
+      - postgres
     extra_hosts: &appextrahosts
       - "*:172.17.0.1"
+    networks:
+      - network-bridge
+
+  phpfpm:
+    container_name: php-fpm
+    restart: always
+    image: vnspc/php:8.3
+    volumes: *appvolumes
+    extra_hosts: *appextrahosts
+    environment:
+      - BLACKFIRE_CLIENT_ID=${BLACKFIRE_CLIENT_ID}
+      - BLACKFIRE_CLIENT_TOKEN=${BLACKFIRE_CLIENT_TOKEN}
+      - COMPOSER_DISABLE_XDEBUG_WARN=${COMPOSER_DISABLE_XDEBUG_WARN:-1}
+      - PHP_CS_FIXER_IGNORE_ENV=${PHP_CS_FIXER_IGNORE_ENV:-1}
+      - PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=${PUPPETEER_SKIP_CHROMIUM_DOWNLOAD:-true}
     networks:
       - network-bridge
 
